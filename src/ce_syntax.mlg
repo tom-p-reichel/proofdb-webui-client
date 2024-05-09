@@ -1,0 +1,51 @@
+DECLARE PLUGIN "coq-proofdb-client.plugin"
+
+{
+
+open G_vernac
+
+open Vernacexpr
+
+open Stdarg
+
+open Pcoq.Constr
+
+}
+
+
+
+VERNAC ARGUMENT EXTEND search_query_proxy
+| ["bywritingthisiindicatethatmytrueintentistosearchasdfinquotes"]
+	-> { (true, SearchLiteral (SearchString ((Anywhere, false), "asdf" , None))) }
+END
+
+
+
+GRAMMAR EXTEND Gram
+	GLOBAL:  search_query_proxy in_or_out_modules_proxy ;
+	search_query_proxy: TOP [
+		[
+			s = search_query -> { s }
+		]
+	];
+END
+
+
+VERNAC ARGUMENT EXTEND in_or_out_modules_proxy
+| ["inside" global_list(rs)] -> {SearchInside rs}
+END
+
+
+(* TODO: can't get inside / outside to work *)
+
+
+VERNAC COMMAND EXTEND NLSearch CLASSIFIED AS SIDEFF
+| ["NLSearch" string(q) search_query_proxy_list(filters) in_or_out_modules_proxy_opt(restriction)] ->
+	{ Ce_api.search q filters restriction}
+END
+
+
+VERNAC COMMAND EXTEND ProofDBEndpoint CLASSIFIED AS SIDEFF
+| ["ProofDB" "endpoint" "is" string(q)] ->
+	{Ce_api.endpoint := q}
+END

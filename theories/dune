@@ -1,0 +1,21 @@
+(coq.theory
+ (name ProofDB)             ; This will determine the top-level Coq
+                                   ; module of your theory, modules will
+                                   ; be MyPlugin.A, etc., when seen from the
+                                   ; outside.
+
+ (package coq-proofdb-client)           ; Adding this line will make your
+                                   ; library installable in the opam package
+
+ (plugins coq-proofdb-client.plugin yojson ezcurl curl base64)
+ 
+ 
+ 
+ (flags :standard -R %{coq:coqlib}/user-contrib/kissloader kissloader )
+ 
+ );cohttp-lwt-unix )) ; Here you should declare all
+                                   ; OCaml plugin dependencies
+                                   ; for your Coq files.
+
+; Other important fields are `modules` and `flags`, see Dune
+; documentation for more details.
