@@ -45,9 +45,9 @@ NLSearch "list reverse" list. (* results must contain the term `list` *)
 
 # Performance
 
-All search results must be embedded on the server side. If the server was just set up, it has no cache. It might take *minutes* to run your first search! After that, searches should be much faster.
+All search results must be embedded on the server side. If the server was just set up, it has no cache. It might take *minutes* to run searches if they're over thousands of theorems that have never been searched before! After that, searches should be much faster.
 
-There is also a client side cache. The first search of a session will be before this is populated.
+There is also a client side cache. First searches of a session will be somewhat slower before this is populated.
 
 If you want to decrease delays associated with populating caches, just add additional filters to searches as in the usage section above. This will result in fewer theorems being considered for embedding.
 
