@@ -13,11 +13,18 @@ Longer description of what your plugin does that can
 cover multiple lines. Including punctuation."""
 
 build: ["dune" "build" "-p" name "-j" jobs]
+
+pin-depends: [
+  ["kissloader.dev" "git+https://github.com/tom-p-reichel/coq-kissloader.git#main"]
+]
+
 depends: [
   "ocaml" {>= "4.07.1"}
   "dune" {>= "2.5"}
   "coq" {>= "8.16" }
-  "cohttp-lwt-unix"
+  "yojson"
+  "ezcurl"
+  "base64"
 ]
 
 tags: [
