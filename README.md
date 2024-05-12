@@ -10,7 +10,7 @@ This software is of prototype quality. Expect sharp edges and inconveniences, an
 # Installation
 
 ```bash
-$ opam switch create proofdb --packages="coq.8.16.1, ocaml.4.14.1" --repos="default" # add coq-released if you want.
+$ opam switch create proofdb --packages="coq.8.16.1,ocaml.4.14.1" --repos="default" # add coq-released if you want.
 $ git clone https://github.com/tom-p-reichel/proofdb-webui-client.git
 $ cd proofdb-webui-client
 $ opam install .
