@@ -116,4 +116,4 @@ let search (s:string) (filters_raw:(bool * Vernacexpr.search_request) list) (res
   (* update cache *)
   Hashtbl.add_seq embed_cache @@ List.to_seq @@ List.map (fun p -> (fst p,Bytes.of_string @@ Base64.decode_exn @@ to_string (snd p))) (response |> member "theorems" |> to_assoc);
   let query_embed = Bytes.of_string @@ Base64.decode_exn (response |> member "query" |> to_string) in 
-  let _ = List.map (fun x -> Feedback.msg_info @@ Pp.str @@ String.concat ":" [string_of_global @@ fst x; term_as_string @@ snd x]) @@ take 80 @@ List.sort (fun a -> fun b -> (get_similarity query_embed @@ string_of_global @@ fst b) - (get_similarity query_embed @@ string_of_global @@ fst a) ) !results in ()
+  let _ = List.map (fun x -> Feedback.msg_info @@ Pp.str @@ String.concat ":" [string_of_global @@ fst x; term_as_string @@ snd x]) @@ take 20 @@ List.sort (fun a -> fun b -> (get_similarity query_embed @@ string_of_global @@ fst b) - (get_similarity query_embed @@ string_of_global @@ fst a) ) !results in ()
