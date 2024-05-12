@@ -25,6 +25,7 @@ depends: [
   "yojson"
   "ezcurl"
   "base64"
+  "kissloader"
 ]
 
 tags: [
